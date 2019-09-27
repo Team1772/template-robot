@@ -12,45 +12,31 @@ public enum Teleop {
         int usbPortDriver = 0, usbPortOperator = 1;
         driver = new XboxController(usbPortDriver);
         operator = new XboxController(usbPortOperator);
+        Robot.arm.enable(true);
     }
 
     public void periodic() {
-        updateToggleArm();
 
-        Robot.arm.enable(toggleOnArm);
-
-        Robot.driver.arcadeDrive(driver.getAxisLeftY(), driver.getAxisRightX());
+        if (operator.getButtonY())
+            Robot.arm.enable(true);
+        else if (operator.getButtonA())
+            Robot.arm.enable(false);
 
         Robot.hatchIntake.enable(operator.getButtonX());
 
-        if (operator.getButtonR1())
-            Robot.cargoIntake.pull(0.1);
+        if (operator.getButtonR1() && operator.getButtonL1())
+            Robot.cargoIntake.pull(0.15);
         else if (operator.getButtonL1())
-            Robot.cargoIntake.push(0.6);
+            Robot.cargoIntake.pull(0.5);
+        else if (operator.getButtonR1())
+            Robot.cargoIntake.push(1);
         else
             Robot.cargoIntake.stop();
 
-        if(driver.getButtonL1())
-            invertDriver();
+        if (driver.getButtonL1())
+            Robot.driver.arcadeDrive(-driver.getAxisLeftY(), driver.getAxisRightX());
+        else
+            Robot.driver.arcadeDrive(driver.getAxisLeftY(), driver.getAxisRightX());
 
-    }
-
-    private boolean toggleOnArm = false;
-
-    public void updateToggleArm() {
-        boolean togglePressedArm = false;
-
-        if (operator.getButtonA()) {
-            if (!togglePressedArm) {
-                toggleOnArm = !toggleOnArm;
-                togglePressedArm = true;
-            }
-        } else {
-            togglePressedArm = false;
-        }
-    }
-
-    public void invertDriver() {
-        Robot.driver.arcadeDrive(-(driver.getAxisLeftY()), -(driver.getAxisLeftX()));
     }
 }

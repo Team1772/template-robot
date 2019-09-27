@@ -8,7 +8,7 @@ public class HatchIntake extends Subsystem {
     Solenoid hatchIntake;
 
     public HatchIntake() {
-        hatchIntake = new Solenoid(0);
+        hatchIntake = new Solenoid(6);
     }
 
     public void enable(boolean activate) {

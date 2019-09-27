@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.core.components.GearBox;
@@ -12,8 +14,8 @@ public class Driver extends Subsystem {
 
     public Driver() {
         boolean isMotorInverted = true;
-        leftGearBox = new GearBox(new VictorSP(0), new VictorSP(1));
-        rightGearBox = new GearBox(new VictorSP(2), new VictorSP(3), isMotorInverted, isMotorInverted);
+        leftGearBox = new GearBox(new TalonSRX(2), new TalonSRX(3));
+        rightGearBox = new GearBox(new TalonSRX(0), new TalonSRX(1), isMotorInverted, isMotorInverted);
 
         navx = new SmartNavx();
     }

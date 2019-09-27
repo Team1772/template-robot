@@ -8,7 +8,7 @@ public class Arm extends Subsystem {
     DoubleSolenoid arm;
 
     public Arm() {
-        arm = new DoubleSolenoid(0, 1);
+        arm = new DoubleSolenoid(4, 5);
     }
 
     public void enable(boolean activate) {

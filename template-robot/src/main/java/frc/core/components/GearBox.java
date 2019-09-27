@@ -1,14 +1,15 @@
 
 package frc.core.components;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SpeedController;
 
 public class GearBox{
-    private SpeedController motorOne, motorTwo;
+    private BaseMotorController motorOne, motorTwo;
     private Encoder encoder;
     
-    public GearBox(SpeedController motorOne, SpeedController motorTwo, Encoder encoder, boolean isMotorOneInverted, boolean isMotorTwoIsInverted, double distancePerPulse) {
+    public GearBox(BaseMotorController motorOne, BaseMotorController motorTwo, Encoder encoder, boolean isMotorOneInverted, boolean isMotorTwoIsInverted, double distancePerPulse) {
         this.motorOne = motorOne;
         this.motorTwo = motorTwo;
         this.encoder = encoder;
@@ -20,31 +21,31 @@ public class GearBox{
         if(encoder != null) this.configureEncoder(distancePerPulse);
     }
 
-    public GearBox(SpeedController motorOne, SpeedController motorTwo, Encoder encoder, double distancePerPulse){
+    public GearBox(BaseMotorController motorOne, BaseMotorController motorTwo, Encoder encoder, double distancePerPulse){
         this(motorOne, motorTwo, encoder, false, false, distancePerPulse);
     }
 
-    public GearBox(SpeedController motorOne, boolean isMotorOneInverted, Encoder encoder, double distancePerPulse){
+    public GearBox(BaseMotorController motorOne, boolean isMotorOneInverted, Encoder encoder, double distancePerPulse){
         this(motorOne, null, encoder, isMotorOneInverted, false, distancePerPulse);
     }
     
-    public GearBox(SpeedController motorOne, Encoder encoder, double distancePerPulse){
+    public GearBox(BaseMotorController motorOne, Encoder encoder, double distancePerPulse){
         this(motorOne, null, encoder, false, false, distancePerPulse);
     }
 
-    public GearBox(SpeedController motorOne, SpeedController motorTwo){
+    public GearBox(BaseMotorController motorOne, BaseMotorController motorTwo){
         this(motorOne, motorTwo, null, false, false, 0);
     }
 
-    public GearBox(SpeedController motorOne, boolean isMotorOneInverted){
+    public GearBox(BaseMotorController motorOne, boolean isMotorOneInverted){
         this(motorOne, null, null, isMotorOneInverted, false, 0);
     }
     
-    public GearBox(SpeedController motorOne){
+    public GearBox(BaseMotorController motorOne){
         this(motorOne, null, null, false, false, 0);
     }
 
-    public GearBox(SpeedController motorOne, SpeedController motorTwo, boolean isMotorOneInverted, boolean isMotorTwoIsInverted){
+    public GearBox(BaseMotorController motorOne, BaseMotorController motorTwo, boolean isMotorOneInverted, boolean isMotorTwoIsInverted){
         this(motorOne, motorTwo, null, isMotorOneInverted, isMotorTwoIsInverted, 0);
     }
 
@@ -57,9 +58,9 @@ public class GearBox{
     }
 
     public void setSpeed(double speed){
-        motorOne.set(speed);
+        motorOne.set(ControlMode.PercentOutput, speed);
 
-        if(motorTwo != null) motorTwo.set(speed);
+        if(motorTwo != null) motorTwo.set(ControlMode.PercentOutput, speed);
     }
 
     public void resetEncoder(){
