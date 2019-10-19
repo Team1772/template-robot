@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.autons.AutonomousTeste;
 
 public enum Auton {
     INSTANCE;
@@ -15,6 +16,7 @@ public enum Auton {
     public void init(){
         autons = new ArrayList<>();
 
+        autons.add(new AutonomousTeste());
         /*Add autons like this:
         autons.add(new CenterGear());
         */

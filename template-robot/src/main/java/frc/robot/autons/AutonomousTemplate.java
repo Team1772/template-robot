@@ -9,7 +9,6 @@ public class AutonomousTemplate extends CommandTypes {
 	public AutonomousTemplate() {
 		super(Robot.driver);
 
-		addStep(new CommandTemplate(), 10); //Time in seconds
+		addStep(new CommandTemplate(), 1); //Time in seconds
 	}
-
 }

@@ -14,19 +14,6 @@ public class CommandTypes extends CommandGroup {
 		requires(subsys);
 	}
 
-	public boolean timeOut(double seconds) {
-		timer = timer == null ? new Timer() : timer;
-		timer.start();
-
-		if (timer.get() > seconds) {
-			timer.reset();
-			timer.stop();
-
-			return true;
-		}
-		return false;
-	}
-
 	/* COMMAND BASED AUTONOMOUS */
 	public void addStep(ICommandTypes command) {
 		super.addSequential(this.toCommand(command));
