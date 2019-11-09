@@ -6,6 +6,7 @@ import frc.robot.Robot;
 public class PullCargo extends Command {
   public PullCargo() {
     requires(Robot.cargoIntake);
+    setTimeout(5);
   }
 
   @Override

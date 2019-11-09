@@ -1,18 +1,18 @@
 package frc.robot.autons;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 import frc.robot.autons.commands.*;
 import frc.robot.autons.commands.groups.*;
 
-public class AutonomousTeste extends CommandTypes {
+public class AutonomousTeste extends CommandGroup {
 
 	public AutonomousTeste() {
-		super(Robot.driver);
+		addSequential(new PullCargo());
 
-		addStep(new PullCargo(), 5); //Time in seconds
+		addSequential(new PushCargo());
 
-		addStep(new PushCargo(), 5);
-
-		addStep(new Stop());
+		addSequential(new Stop());
 	}
 
 }

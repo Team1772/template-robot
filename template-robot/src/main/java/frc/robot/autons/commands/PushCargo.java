@@ -9,6 +9,7 @@ public class PushCargo extends Command {
 
   public PushCargo() {
     requires(Robot.cargoIntake);
+    setTimeout(5);
   }
 
   @Override
@@ -25,12 +26,6 @@ public class PushCargo extends Command {
 
   @Override
   protected boolean isFinished() {
-    System.out.println("Timer: " + timer.get());
-      if(timer.get() >= 5){
-        System.out.println("Caiu no IF: " + timer.get());
-        return true;
-      }
-
     return isTimedOut();
   }
 
