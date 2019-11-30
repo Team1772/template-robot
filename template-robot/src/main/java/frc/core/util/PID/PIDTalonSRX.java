@@ -32,7 +32,7 @@ public class PIDTalonSRX {
     }
 
     private void configSelectedFeedbackSensor(int kPIDLoopIdx, int kTimeoutMs){
-        motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, kPIDLoopIdx, kTimeoutMs);                               
+        motor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, kPIDLoopIdx, kTimeoutMs);
     }
 
     private void setFollower(){
