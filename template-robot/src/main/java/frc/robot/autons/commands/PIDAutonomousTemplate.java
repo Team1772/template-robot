@@ -14,13 +14,10 @@ import frc.robot.Robot;
 import frc.robot.subsystems.Driver;
 
 public class PIDAutonomousTemplate extends Command {
-    Encoder enc;
     Gains gains;
     TalonSRX motor;
     TalonSRX follower;
-    Tolerance tolerance;
     PIDTalonSRX pid;
-    XboxController pilot;
 
     public PIDAutonomousTemplate() {
         // Use requires() here to declare subsystem dependencies
@@ -30,8 +27,6 @@ public class PIDAutonomousTemplate extends Command {
 
     @Override
     protected void initialize() {
-        pilot = new XboxController(0);
-
         motor = new TalonSRX(0);
         follower = new TalonSRX(1);
 
@@ -41,9 +36,7 @@ public class PIDAutonomousTemplate extends Command {
 
     @Override
     protected void execute() {
-        if (pilot.getAButton()){
-            pid.setPostion(0);
-        }
+        pid.setPostion(0);
     }
 
     @Override
